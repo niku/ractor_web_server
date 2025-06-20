@@ -8,8 +8,4 @@ class RactorWebServerTest < Test::Unit::TestCase
       ::RactorWebServer.const_defined?(:VERSION)
     end
   end
-
-  test "something useful" do
-    assert_equal("expected", "actual")
-  end
 end
