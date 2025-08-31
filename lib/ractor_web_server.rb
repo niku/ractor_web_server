@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "ractor_web_server/server"
 require_relative "ractor_web_server/version"
 
 module RactorWebServer

@@ -1,28 +1,26 @@
 # RactorWebServer
 
-TODO: Delete this and the text below, and describe your gem
+> [!CAUTION]
+> Currently, This application server is very experimental. Please do not use it in production environments.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ractor_web_server`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a Rack-compatible application server based on Ractor.
+The main reason of creating this application server is to verify how much Ractor is ready for production,
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 ```
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+git clone https://github.com/niku/ractor_web_server
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+Start the server
+
+```
+bundle exec rackup --server ractor_web_server --quiet examples/fibonacci.ru
+```
+
+then access to localhost:9292/20 , you can get the Fibonacci number.
 
 ## Development
 
