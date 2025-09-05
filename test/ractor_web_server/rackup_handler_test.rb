@@ -35,3 +35,31 @@ class RactorWebServer::RackupHandlerTest < Test::Unit::TestCase
     end
   end
 end
+
+class Rackup::Handler::RactorWebServerTest < Test::Unit::TestCase
+  TOP_PAGE = "Top Page"
+  NOT_FOUND = "Not Found"
+
+  test "::Rackup::Handler::RactorWebServer runs properly" do
+    Ractor.new do
+      app = Rack::Builder.new do
+        process = nil.instance_eval do
+          proc { |env|
+            case env["PATH_INFO"].split("/")
+            in [] # /
+              [200, {}, [TOP_PAGE]]
+            else
+              [404, {}, [NOT_FOUND]]
+            end
+          }
+        end
+        run process
+      end
+
+      ::Rackup::Handler::RactorWebServer.run(app)
+    end
+
+    assert_equal TOP_PAGE, ::Net::HTTP.get(URI.parse("http://localhost:8080/"))
+    assert_equal NOT_FOUND, ::Net::HTTP.get(URI.parse("http://localhost:8080/aaaa"))
+  end
+end
