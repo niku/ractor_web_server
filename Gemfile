@@ -14,4 +14,6 @@ gem "rubocop", "~> 1.21"
 
 gem "webrick", "~> 1.9"
 
+gem "rack", github: "rack/rack", branch: "main" # It needs 8edebb7 to work properly with Ractor.
+
 gem "rackup", "~> 2.2"
