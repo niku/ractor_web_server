@@ -53,6 +53,8 @@ class Rackup::Handler::RactorWebServerTest < Test::Unit::TestCase
             end
           }
         end
+        use Rack::CommonLogger
+        use Rack::Lint
         run process
       end
 

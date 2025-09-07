@@ -19,6 +19,10 @@ module RactorWebServer
     attr_reader :port
 
     def initialize(app:, subscribers:, port: 8080)
+      # If a Rack::Builder instance was provided, finalize it first so we
+      # don't try to make the builder (with its internal procs capturing
+      # unshareable locals like `args`) shareable.
+      app = app.to_app if app.respond_to?(:to_app)
       Ractor.make_shareable(app)
       raise("app must be a Ractor sharable object") unless Ractor.shareable?(app)
       raise("app must be a Ractor callable object") unless app.respond_to?(:call)
