@@ -2,6 +2,7 @@
 
 require "test_helper"
 require "ractor_web_server"
+require "net/http"
 
 class RactorWebServer::RackupHandlerTest < Test::Unit::TestCase
   def setup
@@ -28,7 +29,6 @@ class RactorWebServer::RackupHandlerTest < Test::Unit::TestCase
     subscriber.receive => { event: :server_started, data: { actual_port_number: } }
 
     assert_nothing_raised do
-      require "net/http"
       response = Net::HTTP.get_response("localhost", "/", actual_port_number)
       assert_equal "200", response.code
       assert_equal "Hello World!", response.body
@@ -53,8 +53,13 @@ class Rackup::Handler::RactorWebServerTest < Test::Unit::TestCase
             end
           }
         end
+        # resemble to default middleware stack of rackup
+        # https://github.com/rack/rackup/blob/v2.2.1/lib/rackup/server.rb#L281-L285
+        use Rack::ContentLength
         use Rack::CommonLogger
+        use Rack::ShowExceptions
         use Rack::Lint
+        use Rack::TempfileReaper
         run process
       end
 

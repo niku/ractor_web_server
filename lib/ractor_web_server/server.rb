@@ -11,7 +11,9 @@ require_relative "rackup_handler"
   WEBrick::HTTPStatus::StatusMessage,
   WEBrick::Config::HTTP,
   Rack::ContentLength::STATUS_WITH_NO_ENTITY_BODY,
-  Rack::Lint::Wrapper::BODY_METHODS
+  Rack::Lint::Wrapper::BODY_METHODS,
+  Rack::Request.ip_filter,
+  Rack::Request.forwarded_priority
 ].each { |constant| Ractor.make_shareable(constant) }
 
 module RactorWebServer
