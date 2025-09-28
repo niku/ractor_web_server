@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../lib/ractor_web_server"
 
 class App

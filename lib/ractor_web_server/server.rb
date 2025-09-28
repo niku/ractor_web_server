@@ -58,7 +58,7 @@ module RactorWebServer
             ::Rack::RACK_URL_SCHEME => %w[yes on 1].include?(env[::Rack::HTTPS]) ? "https" : "http"
           )
 
-          status, headers, body = app.call(env)
+          status, _, body = app.call(env)
 
           res = WEBrick::HTTPResponse.new(WEBrick::Config::HTTP)
           res.status = status

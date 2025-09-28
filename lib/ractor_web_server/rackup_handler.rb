@@ -8,7 +8,7 @@ module RactorWebServer
       environment = ENV["RACK_ENV"] || "development"
       default_host = environment == "development" ? "localhost" : nil
 
-      host = options.delete(:Host) || default_host
+      options.delete(:Host) || default_host
       port = options.delete(:Port) || 8080
       subscribers = options.delete(:subscribers) || {}
 
@@ -19,7 +19,7 @@ module RactorWebServer
       end
     end
 
-    def valid_options?(options)
+    def valid_options?(_options)
       environment = ENV["RACK_ENV"] || "development"
       default_host = environment == "development" ? "localhost" : "0.0.0.0"
 
