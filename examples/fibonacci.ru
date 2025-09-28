@@ -2,7 +2,7 @@
 
 require_relative "../lib/ractor_web_server"
 
-class App
+class App # rubocop:disable Style/Documentation
   def call(env)
     case env["PATH_INFO"].match(%r{^/(?<value>\d+)$})
     in { value: value }
@@ -14,7 +14,7 @@ class App
     end
   end
 
-  def fibonacci(n)
+  def fibonacci(n) # rubocop:disable Naming/MethodParameterName
     return n if n < 2
 
     fibonacci(n - 1) + fibonacci(n - 2)

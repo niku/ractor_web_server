@@ -17,7 +17,7 @@ require_relative "rackup_handler"
 ].each { |constant| Ractor.make_shareable(constant) }
 
 module RactorWebServer
-  class Server
+  class Server # rubocop:disable Style/Documentation
     attr_reader :port
 
     def initialize(app:, subscribers:, port: 8080)
@@ -34,7 +34,7 @@ module RactorWebServer
       @subscribers = (subscribers || {}).transform_values { |v| Array(v) }
     end
 
-    def run
+    def run # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       tcp_server = TCPServer.new(@port)
       actual_port_number = tcp_server.addr[1] # Get the actual port number assigned by the OS
 

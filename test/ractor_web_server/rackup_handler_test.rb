@@ -14,7 +14,7 @@ module RactorWebServer
       end
     end
 
-    def test_run
+    def test_run # rubocop:disable Metrics/MethodLength
       subscriber = Ractor::Port.new
 
       Ractor.new(@klass, subscriber) do |klass, subscriber|

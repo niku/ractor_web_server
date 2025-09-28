@@ -3,7 +3,7 @@
 require "rackup" # move somewhere more suitable if needed
 
 module RactorWebServer
-  module RackupHandler
+  module RackupHandler # rubocop:disable Style/Documentation
     def run(app, **options)
       environment = ENV["RACK_ENV"] || "development"
       default_host = environment == "development" ? "localhost" : nil
@@ -33,7 +33,7 @@ end
 
 if Object.const_defined?(:Rackup) && ::Rackup.const_defined?(:Handler)
   module Rackup
-    module Handler
+    module Handler # rubocop:disable Style/Documentation
       module RactorWebServer
         class << self
           include ::RactorWebServer::RackupHandler
