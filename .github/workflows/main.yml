@@ -14,7 +14,8 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '3.5.0'
+          # It works properly since Ractor::Port was introduced that is greater than ruby3.5.0-preview1
+          - "head"
 
     steps:
       - uses: actions/checkout@v4
