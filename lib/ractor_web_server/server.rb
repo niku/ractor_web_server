@@ -45,9 +45,7 @@ module RactorWebServer
 
         r = Ractor.new(@app) do |app|
           conn = Ractor.receive
-          # Causes Ractor::IsolationError unless RequestTimeout: nil is merged into the config.
-          # Error: 'Singleton::SingletonClassMethods#instance': cannot access unshareable values from instance variables of classes/modules in non-main Ractors.
-          # RequestTimeout: nil skips the timeout check in WEBrick::Utils.timeout
+          # Avoid Ractor::IsolationError by setting RequestTimeout: nil
           req = WEBrick::HTTPRequest.new(WEBrick::Config::HTTP.merge(RequestTimeout: nil))
           req.parse(conn)
 
